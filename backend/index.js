@@ -31,7 +31,6 @@ app.post('/insert', async (req, res) => {
 
 app.post('/regenerate', async (req, res) => {
     try {
-        console.log(req.body)
         const response = await regenerate(req.body);
         res.send(response);
     }

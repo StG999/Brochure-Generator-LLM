@@ -31,7 +31,7 @@ const MarketingCopyForm = () => {
       setOutput(response.data);
       setButton('Insert in DB')
     } catch (error) {
-      console.error('Error generating marketing copy:', error);
+      console.error('Error generating marketing copy!', error);
     }
   };
 
@@ -41,14 +41,12 @@ const MarketingCopyForm = () => {
       setButton('Inserted!')
       return response;
     } catch (error) {
-      console.error('Error inserting marketing copy:', error);
+      console.error('Error inserting marketing copy!', error);
     }
   };
 
   const handleRegenerate = async () => {
     if (!highlightedText) return;
-    console.log(output);
-    console.log('----------------- Regenerated output -----------------')
     const response = await axios.post('http://localhost:4000/regenerate', {
       highlightedText, output, dropdownValue
     });

@@ -8,17 +8,14 @@ const { regeneratePrompt, generatePrompt } = require('./prompts')
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
-const genAiUrl = "https://api.edenai.run/v2/text/generation";
 const apiKey = `Bearer ${process.env.API_KEY}`;
 
 const connection = supabase.createClient(supabaseUrl, supabaseKey);
 
 const options = {
     method: "POST",
-    url: genAiUrl,
-    headers: {
-        authorization: apiKey,
-    },
+    url: "https://api.edenai.run/v2/text/generation",
+    headers: { authorization: apiKey },
     data: {
         providers: "openai",
         temperature: 0.4,
@@ -28,14 +25,10 @@ const options = {
 
 module.exports.regenerate = async (params) => {
     let prompt = regeneratePrompt(params);
-
     options.data.text = prompt;
 
     try {
-        console.log(prompt)
-        console.log("\n\n----------------------^^PROMPT^^----------------------\n\n")
         const response = await axios.request(options);
-        console.log(response.data)
         return response.data.openai.generated_text;
     } catch (error) {
         console.error(error);
@@ -67,14 +60,10 @@ module.exports.insertInDB = async (params) => {
 
 module.exports.generateResponse = async (params) => {
     let prompt = generatePrompt(params);
-
     options.data.text = prompt;
 
     try {
-        console.log(prompt)
-        console.log("\n\n----------------------^^PROMPT^^----------------------\n\n")
         const response = await axios.request(options);
-        console.log(response.data)
         return response.data.openai.generated_text;
     } catch (error) {
         console.error(error);
