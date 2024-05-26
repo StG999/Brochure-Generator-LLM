@@ -63,8 +63,8 @@ The frontend UI consists of the following components:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/real-estate-brochure-generator.git
-   cd real-estate-brochure-generator
+   git clone https://github.com/StG999/Brochure-Generator-LLM.git
+   cd Brochure-Generator-LLM
    ```
 
 2. Install dependencies for both frontend and backend:
